@@ -6,10 +6,13 @@ function power(num, e){
 }
 
 function better(num, e, lst = {}){
-	var ret = num, i = 1;
 	if (lst[e])
 		return lst[e];
-	return lst[e] = better(num, Math.floor(e / 2), lst) + better(num, Math.floor((e + 1) / 2), lst);
+	if (e == 0)
+		return lst[e] = 1;
+	else if (e == 1)
+		return lst[e] = num;
+	return lst[e] = better(num, Math.floor(e / 2), lst) * better(num, Math.floor((e + 1) / 2), lst);
 }
 
 console.log(power(10, 3));
